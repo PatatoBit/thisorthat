@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap');
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	font-family: 'Radio Canada Big', sans-serif;
+	font-optical-sizing: auto;
+}
+
+.page {
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+
+	padding-inline: 1rem;
+
+	min-height: 100vh;
+	margin-inline: auto;
+	max-width: 60rem;
+	width: 100%;
+
+	.side {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		flex: 1 1 auto;
+		border: 1px solid blue;
+
+		padding: 1.5rem;
+	}
+}
