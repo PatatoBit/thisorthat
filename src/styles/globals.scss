@@ -14,6 +14,17 @@ body {
 	font-optical-sizing: auto;
 }
 
+textarea {
+	padding: 0.5rem;
+	font-family: 'Radio Canada Big', sans-serif;
+	font-optical-sizing: auto;
+
+	border-radius: 0.2rem;
+
+	border: none;
+	background-color: rgb(228, 228, 228);
+}
+
 .page {
 	display: flex;
 	flex-direction: column;
@@ -35,7 +46,6 @@ body {
 		flex-direction: column;
 		gap: 1rem;
 		flex: 1 1 auto;
-		border: 1px solid blue;
 
 		padding: 1.5rem;
 	}
