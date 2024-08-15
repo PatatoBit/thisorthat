@@ -30,6 +30,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"openai": "^4.55.7",
 		"sass": "^1.77.8"
 	}
 }
