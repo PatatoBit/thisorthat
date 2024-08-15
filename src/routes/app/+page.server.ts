@@ -1,6 +1,4 @@
 import type { Actions } from '@sveltejs/kit';
-import { OPENAI_KEY } from '$env/static/private';
-import { OpenAI } from 'openai';
 
 interface UserInput {
 	image: File;
@@ -20,24 +18,5 @@ export const actions: Actions = {
 		console.table(userInput);
 
 		// OpenAI
-		console.log('OPENAI_KEY', process.env.OPENAI_KEY);
-
-		const openai = new OpenAI({ apiKey: OPENAI_KEY });
-		const response = await openai.chat.completions.create({
-			model: 'gpt-3.5-turbo',
-			messages: [
-				{
-					role: 'system',
-					content: 'You are a helpful assistant.'
-				},
-				{
-					role: 'user',
-					content: 'Hi'
-				}
-			]
-		});
-
-		console.log(response);
-		return response;
 	}
 };
