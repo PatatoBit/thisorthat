@@ -5,11 +5,12 @@
 	import Product from '../../components/Product.svelte';
 	import type { ProductData } from '$lib/types';
 	import axios from 'axios';
+	import Meter from '../../components/Meter.svelte';
 
 	let images1: FileList;
 	let images2: FileList;
 
-	let responseData: CompareData;
+	let responseData: CompareData | undefined = dummy;
 
 	async function handleSubmit() {
 		if (images1 && images2) {
@@ -67,6 +68,10 @@
 				{/if}
 			</div>
 		</div>
+
+		{#if responseData?.recommend_meter}
+			<Meter value={responseData.recommend_meter} />
+		{/if}
 	</form>
 </div>
 
