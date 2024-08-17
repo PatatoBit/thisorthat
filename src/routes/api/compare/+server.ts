@@ -36,10 +36,10 @@ If you cannot identity an object, you shall return an empty object with the name
 If you cannot identify a field, you shall return null.
 `;
 
-export const GET: RequestHandler = async () => {
+export const POST: RequestHandler = async ({ request }) => {
 	const openai = new OpenAI({ apiKey: OPENAI_KEY });
-	// const { image1, image2 } = await request.json();
-	// console.log(image1, image2);
+	const images = await request.json();
+	const imagesUrl: string[] = images.params.images;
 
 	const response = await openai.chat.completions.create({
 		model: 'gpt-4o',
@@ -50,22 +50,12 @@ export const GET: RequestHandler = async () => {
 			},
 			{
 				role: 'user',
-				content: [
-					{
-						type: 'image_url',
-						image_url: {
-							url: 'https://media.discordapp.net/attachments/891657091008315393/1274270100706562048/IMG_0665.jpg?ex=66c1a402&is=66c05282&hm=425b0ab5da061d9001fc043f4ae8be248497f2d55c471e9cf57ae2612b43fb3f&=&format=webp&width=1530&height=1142',
-							detail: 'low'
-						}
-					},
-					{
-						type: 'image_url',
-						image_url: {
-							url: 'https://media.discordapp.net/attachments/891657091008315393/1274270100928856074/IMG_0664.jpg?ex=66c1a402&is=66c05282&hm=ce9e59287aa16d8910430802152652f05f7a28f258be4e057101fb9baf3fda4d&=&format=webp&width=1610&height=1144',
-							detail: 'low'
-						}
+				content: imagesUrl.map((base64) => ({
+					type: 'image_url',
+					image_url: {
+						url: base64
 					}
-				]
+				}))
 			}
 		]
 	});

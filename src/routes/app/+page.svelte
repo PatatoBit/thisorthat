@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { type CompareData } from '$lib/types';
 	import dummy from '$lib/dummy.json';
+	import { toBase64 } from '$lib/index';
 	import Product from '../../components/Product.svelte';
 	import type { ProductData } from '$lib/types';
 	import axios from 'axios';
-
-	const data1: ProductData | null = dummy.products[0];
-	const data2: ProductData | null = dummy.products[1];
 
 	let images1: FileList;
 	let images2: FileList;
@@ -14,13 +12,23 @@
 	let responseData: CompareData;
 
 	async function handleSubmit() {
-		await axios.get('/api/compare').then((response) => {
-			try {
-				responseData = JSON.parse(response.data.message.content);
-			} catch (error) {
-				console.log(response.data.message.content);
-			}
-		});
+		if (images1 && images2) {
+			const firstBase64 = await toBase64(images1[0]);
+			const secondBase64 = await toBase64(images2[0]);
+			const payload = {
+				images: [firstBase64, secondBase64]
+			};
+
+			await axios.post('/api/compare', { params: payload }).then((response) => {
+				try {
+					responseData = JSON.parse(response.data.message.content);
+				} catch (error) {
+					console.log(response.data.message.content);
+				}
+			});
+		} else {
+			alert('Missing images');
+		}
 	}
 </script>
 
@@ -30,7 +38,13 @@
 
 		<div class="sides">
 			<div class="side">
-				<input type="file" accept="image/png, image/jpeg" multiple name="image" />
+				<input
+					type="file"
+					accept="image/png, image/jpeg"
+					multiple
+					name="image"
+					bind:files={images1}
+				/>
 				<textarea placeholder="Custom description" name="description"></textarea>
 
 				{#if responseData}
@@ -39,7 +53,13 @@
 			</div>
 
 			<div class="side">
-				<input type="file" accept="image/png, image/jpeg" multiple name="image" />
+				<input
+					type="file"
+					accept="image/png, image/jpeg"
+					multiple
+					name="image"
+					bind:files={images2}
+				/>
 				<textarea placeholder="Custom description" name="description"></textarea>
 
 				{#if responseData}
