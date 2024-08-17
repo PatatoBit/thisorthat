@@ -10,7 +10,7 @@ You shall read and analyze images to output JSON.
 
 A product object in a products array each having
 
-name, price, discounted_price, quantity, quantity_unit, brief_explanation, pros, cons
+name, price, discounted_price, quantity, quantity_unit, brief_explanation (explanation of who should buy this), pros, cons
 
 The pros and cons you can analyze and think for yourself
 
@@ -19,7 +19,7 @@ Give me a percentage from 0-100% for a recommend meter to lean. 0 for the first 
 
 The structure of this JSON object is
 {
-	products: an array of {
+	"products": an array of {
 		“name”: string
 		“price”: number
 		“discounted_price”: number?

@@ -15,7 +15,11 @@
 
 	async function handleSubmit() {
 		await axios.get('/api/compare').then((response) => {
-			responseData = JSON.parse(response.data.message.content);
+			try {
+				responseData = JSON.parse(response.data.message.content);
+			} catch (error) {
+				console.log(response.data.message.content);
+			}
 		});
 	}
 </script>
@@ -23,17 +27,34 @@
 <div class="page">
 	<form class="container" on:submit|preventDefault={handleSubmit}>
 		<button class="compare" type="submit">Compare</button>
+
 		<div class="sides">
-			{#if responseData}
-				{#each responseData.products as product}
-					<Product data={product} />
-				{/each}
-			{/if}
+			<div class="side">
+				<input type="file" accept="image/png, image/jpeg" multiple name="image" />
+				<textarea placeholder="Custom description" name="description"></textarea>
+
+				{#if responseData}
+					<Product data={responseData.products[0]} />
+				{/if}
+			</div>
+
+			<div class="side">
+				<input type="file" accept="image/png, image/jpeg" multiple name="image" />
+				<textarea placeholder="Custom description" name="description"></textarea>
+
+				{#if responseData}
+					<Product data={responseData.products[1]} />
+				{/if}
+			</div>
 		</div>
 	</form>
 </div>
 
 <style lang="scss">
+	textarea {
+		resize: none;
+	}
+
 	.container {
 		margin-top: 5rem;
 		flex-direction: column;
