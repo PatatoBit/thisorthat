@@ -37,11 +37,6 @@
 	<form class="container" on:submit|preventDefault={handleSubmit}>
 		<button class="compare" type="submit">Compare</button>
 
-		{#if responseData?.recommend_meter}
-			<br />
-			<Meter value={responseData.recommend_meter} />
-		{/if}
-
 		<div class="sides">
 			<div class="side">
 				<input
@@ -73,6 +68,15 @@
 			</div>
 		</div>
 	</form>
+
+	{#if responseData?.recommend_meter}
+		<br />
+		<div class="meter">
+			<Meter value={responseData.recommend_meter} />
+		</div>
+	{/if}
+
+	<br />
 </div>
 
 <style lang="scss">
@@ -94,9 +98,10 @@
 		flex-direction: row;
 	}
 
-	.fixed {
-		position: absolute;
-		bottom: 0;
-		z-index: 10;
+	.meter {
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 </style>

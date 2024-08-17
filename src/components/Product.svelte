@@ -4,6 +4,11 @@
 </script>
 
 <div class="container">
+	<div class="data">
+		<h4>Name</h4>
+		<p>{data.name}</p>
+	</div>
+
 	<div class="row">
 		<div class="data">
 			<h4>Price</h4>
