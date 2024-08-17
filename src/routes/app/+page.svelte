@@ -1,13 +1,19 @@
 <script lang="ts">
+	import axios from 'axios';
+
 	import dummy from '$lib/dummy.json';
 	import type { CompareData } from '$lib/types';
-	import axios from 'axios';
+
+	let files: FileList;
 
 	let data: CompareData;
 	data = dummy;
 
 	async function handleSubmit() {
 		try {
+			let formData = new FormData();
+			formData.append('image', files[0]);
+
 			await axios.get('/api/compare').then((response) => {
 				console.log(response.data);
 			});
