@@ -10,7 +10,7 @@
 	let images1: FileList;
 	let images2: FileList;
 
-	let responseData: CompareData | undefined = dummy;
+	let responseData: CompareData | undefined;
 
 	async function handleSubmit() {
 		if (images1 && images2) {
@@ -39,13 +39,16 @@
 
 		<div class="sides">
 			<div class="side">
-				<input
-					type="file"
-					accept="image/png, image/jpeg"
-					multiple
-					name="image"
-					bind:files={images1}
-				/>
+				<div class="upload">
+					<input
+						id="file-upload"
+						type="file"
+						accept="image/png, image/jpeg"
+						multiple
+						name="image"
+						bind:files={images1}
+					/>
+				</div>
 				<textarea placeholder="Custom description" name="description"></textarea>
 
 				{#if responseData}
@@ -54,13 +57,16 @@
 			</div>
 
 			<div class="side">
-				<input
-					type="file"
-					accept="image/png, image/jpeg"
-					multiple
-					name="image"
-					bind:files={images2}
-				/>
+				<div class="upload">
+					<input
+						id="file-upload"
+						type="file"
+						accept="image/png, image/jpeg"
+						multiple
+						name="image"
+						bind:files={images2}
+					/>
+				</div>
 				<textarea placeholder="Custom description" name="description"></textarea>
 				{#if responseData}
 					<Product data={responseData.products[1]} />
