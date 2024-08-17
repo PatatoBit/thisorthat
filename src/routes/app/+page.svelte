@@ -1,25 +1,22 @@
 <script lang="ts">
+	import { type CompareData } from '$lib/types';
+	import dummy from '$lib/dummy.json';
+	import Product from '../../components/Product.svelte';
+	import type { ProductData } from '$lib/types';
 	import axios from 'axios';
 
-	import dummy from '$lib/dummy.json';
-	import type { CompareData } from '$lib/types';
+	const data1: ProductData | null = dummy.products[0];
+	const data2: ProductData | null = dummy.products[1];
 
-	let files: FileList;
+	let images1: FileList;
+	let images2: FileList;
 
-	let data: CompareData;
-	data = dummy;
+	let responseData: CompareData;
 
 	async function handleSubmit() {
-		try {
-			let formData = new FormData();
-			formData.append('image', files[0]);
-
-			await axios.get('/api/compare').then((response) => {
-				console.log(response.data);
-			});
-		} catch (error) {
-			console.error('Error:', error);
-		}
+		await axios.get('/api/compare').then((response) => {
+			responseData = JSON.parse(response.data.message.content);
+		});
 	}
 </script>
 
@@ -27,50 +24,11 @@
 	<form class="container" on:submit|preventDefault={handleSubmit}>
 		<button class="compare" type="submit">Compare</button>
 		<div class="sides">
-			{#each data.products as product}
-				<!-- content here -->
-				<div class="side">
-					<input type="file" accept="image/png, image/jpeg" multiple name="image" />
-					<textarea placeholder="Custom description" name="description"></textarea>
-
-					<h4>Price</h4>
-					<p>
-						<strike>{product.price}</strike>
-						{product.discounted_price}
-
-						<span class="discount">
-							-{Math.round(((product.price - product.discounted_price) / product.price) * 100)}%
-						</span>
-					</p>
-
-					<h4>Quantity</h4>
-					<p>{product.quantity}</p>
-
-					<h4>Price / Quantity</h4>
-					<p>{product.price / product.quantity}</p>
-
-					<h4>Explanation</h4>
-					<p>{product.brief_explanation}</p>
-
-					<h4>Pros</h4>
-					<ul>
-						{#each product.pros as pro}
-							<li>
-								{pro}
-							</li>
-						{/each}
-					</ul>
-
-					<h4>Cons</h4>
-					<ul>
-						{#each product.cons as con}
-							<li>
-								{con}
-							</li>
-						{/each}
-					</ul>
-				</div>
-			{/each}
+			{#if responseData}
+				{#each responseData.products as product}
+					<Product data={product} />
+				{/each}
+			{/if}
 		</div>
 	</form>
 </div>
@@ -85,16 +43,8 @@
 		margin: 0 auto;
 	}
 
-	.discount {
-		color: green;
-	}
-
 	.sides {
 		display: flex;
 		flex-direction: row;
-	}
-
-	textarea {
-		resize: none;
 	}
 </style>

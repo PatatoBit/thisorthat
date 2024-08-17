@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductData {
 	name: string;
 	price: number;
 	discounted_price: number;
@@ -10,6 +10,11 @@ export interface Product {
 }
 
 export interface CompareData {
-	products: Product[];
+	products: ProductData[];
 	recommend_meter: number;
+}
+
+export interface InputData {
+	images: FileList;
+	description: string;
 }
