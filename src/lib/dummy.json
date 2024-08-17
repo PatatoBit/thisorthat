@@ -1,39 +1,31 @@
 {
 	"products": [
 		{
-			"name": "Spring Onions (10 pcs)",
-			"price": 14.99,
-			"original_price": 17.99,
+			"name": "Spring Onions",
+			"price": 17.99,
+			"discounted_price": 14.99,
 			"quantity": 10,
-			"brief_explanation": "You should buy this product if you're looking to purchase a larger quantity of spring onions at a discounted rate for a limited time.",
+			"quantity_unit": "units",
+			"brief_explanation": "This product offers a significant discount, making it a good value for those needing a larger quantity of spring onions.",
 			"pros": [
-				"Bulk purchase at a discounted price",
-				"Limited-time offer encourages savings on a larger quantity"
+				"Lower price per unit compared to the original price.",
+				"Great option for bulk purchase."
 			],
-			"cons": [
-				"Higher initial cost compared to smaller packages",
-				"Potential waste if not used quickly due to perishability"
-			],
-			"value_per_dollar": 0.6664,
-			"percentage_comparison": 0
+			"cons": ["Higher upfront cost.", "Limited time offer."]
 		},
 		{
-			"name": "Spring Onions (6 pcs)",
-			"price": 5.99,
-			"original_price": 7.99,
+			"name": "Spring Onions",
+			"price": 7.99,
+			"discounted_price": 5.99,
 			"quantity": 6,
-			"brief_explanation": "You should buy this product if you want a smaller quantity of spring onions at a reduced price, with an exclusive offer for the first 50 customers.",
-			"pros": [
-				"Lower cost and more affordable",
-				"Exclusive offer increases perceived value",
-				"Ideal for those needing fewer onions"
-			],
+			"quantity_unit": "units",
+			"brief_explanation": "This product is ideal for customers who need a smaller quantity and want to take advantage of a limited offer.",
+			"pros": ["Lower overall cost.", "Good for smaller households."],
 			"cons": [
-				"Limited availability to the first 50 customers",
-				"Smaller quantity might not be sufficient for larger needs"
-			],
-			"value_per_dollar": 0.6678,
-			"percentage_comparison": 100
+				"Higher price per unit compared to the larger quantity.",
+				"Offer limited to the first 50 customers."
+			]
 		}
-	]
+	],
+	"recommend_meter": 100
 }

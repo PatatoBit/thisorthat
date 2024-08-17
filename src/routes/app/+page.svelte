@@ -1,14 +1,27 @@
 <script lang="ts">
 	import dummy from '$lib/dummy.json';
-	console.table(dummy);
+	import type { CompareData } from '$lib/types';
+	import axios from 'axios';
+
+	let data: CompareData;
+	data = dummy;
+
+	async function handleSubmit() {
+		try {
+			await axios.get('/api/compare').then((response) => {
+				console.log(response.data);
+			});
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	}
 </script>
 
 <div class="page">
-	<form class="container" action="?/compare" method="post">
+	<form class="container" on:submit|preventDefault={handleSubmit}>
 		<button class="compare" type="submit">Compare</button>
-
 		<div class="sides">
-			{#each dummy.products as product}
+			{#each data.products as product}
 				<!-- content here -->
 				<div class="side">
 					<input type="file" accept="image/png, image/jpeg" multiple name="image" />
@@ -16,13 +29,11 @@
 
 					<h4>Price</h4>
 					<p>
-						<strike>{product.original_price}</strike>
-						{product.price}
+						<strike>{product.price}</strike>
+						{product.discounted_price}
 
 						<span class="discount">
-							-{Math.round(
-								((product.original_price - product.price) / product.original_price) * 100
-							)}%
+							-{Math.round(((product.price - product.discounted_price) / product.price) * 100)}%
 						</span>
 					</p>
 
