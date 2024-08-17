@@ -10,7 +10,7 @@ You shall read and analyze images to output JSON.
 
 A product object in a products array each having
 
-name, price, discounted_price, quantity, quantity_unit, brief_explanation (explanation of who should buy this), pros, cons
+name, price, discounted_price (price after promotion), quantity, quantity_unit, brief_explanation (explanation of who should buy this), pros, cons
 
 The pros and cons you can analyze and think for yourself
 
@@ -42,7 +42,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	const imagesUrl: string[] = images.params.images;
 
 	const response = await openai.chat.completions.create({
-		model: 'gpt-4o',
+		model: 'gpt-4o-mini',
 		messages: [
 			{
 				role: 'system',

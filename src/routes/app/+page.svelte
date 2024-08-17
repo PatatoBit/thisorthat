@@ -37,6 +37,11 @@
 	<form class="container" on:submit|preventDefault={handleSubmit}>
 		<button class="compare" type="submit">Compare</button>
 
+		{#if responseData?.recommend_meter}
+			<br />
+			<Meter value={responseData.recommend_meter} />
+		{/if}
+
 		<div class="sides">
 			<div class="side">
 				<input
@@ -62,16 +67,11 @@
 					bind:files={images2}
 				/>
 				<textarea placeholder="Custom description" name="description"></textarea>
-
 				{#if responseData}
 					<Product data={responseData.products[1]} />
 				{/if}
 			</div>
 		</div>
-
-		{#if responseData?.recommend_meter}
-			<Meter value={responseData.recommend_meter} />
-		{/if}
 	</form>
 </div>
 
@@ -92,5 +92,11 @@
 	.sides {
 		display: flex;
 		flex-direction: row;
+	}
+
+	.fixed {
+		position: absolute;
+		bottom: 0;
+		z-index: 10;
 	}
 </style>
