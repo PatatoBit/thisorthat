@@ -9,9 +9,12 @@
 	import { fly } from 'svelte/transition';
 
 	let images1: FileList;
-	let images2: FileList;
+	let custom1: string = '';
 
-	let responseData: CompareData | undefined;
+	let images2: FileList;
+	let custom2: string = '';
+
+	let responseData: CompareData | null;
 
 	let loading: boolean = false;
 
@@ -33,21 +36,23 @@
 
 			const payload = {
 				images1: converted1,
-				images2: converted2
+				custom1,
+				images2: converted2,
+				custom2
 			};
 
+			responseData = null;
 			await axios.post('/api/compare', { params: payload }).then((response) => {
 				try {
 					responseData = JSON.parse(response.data.message.content);
+					loading = false;
 				} catch (error) {
 					console.log(response.data.message.content);
+					loading = false;
 				}
 			});
-
-			loading = false;
 		} else {
 			alert('Missing images');
-
 			loading = false;
 		}
 	}
@@ -58,6 +63,16 @@
 		<div class="compare">
 			<button type="submit">Compare</button>
 		</div>
+
+		{#if loading}
+			<div class="loading">
+				<img
+					transition:fly
+					src="https://media1.tenor.com/m/FawYo00tBekAAAAC/loading-thinking.gif"
+					alt="Loading"
+				/>
+			</div>
+		{/if}
 
 		<div class="sides">
 			<div class="side">
@@ -71,7 +86,8 @@
 						bind:files={images1}
 					/>
 				</div>
-				<textarea placeholder="Custom description" name="description"></textarea>
+
+				<textarea bind:value={custom1} placeholder="Custom description" name="description" />
 
 				{#if responseData}
 					<Product data={responseData.products[0]} />
@@ -89,22 +105,14 @@
 						bind:files={images2}
 					/>
 				</div>
-				<textarea placeholder="Custom description" name="description"></textarea>
+
+				<textarea bind:value={custom2} placeholder="Custom description" name="description" />
+
 				{#if responseData}
 					<Product data={responseData.products[1]} />
 				{/if}
 			</div>
 		</div>
-
-		{#if loading}
-			<div class="loading">
-				<img
-					transition:fly
-					src="https://media1.tenor.com/m/FawYo00tBekAAAAC/loading-thinking.gif"
-					alt="Loading"
-				/>
-			</div>
-		{/if}
 	</form>
 
 	{#if responseData}

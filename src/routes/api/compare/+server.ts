@@ -11,7 +11,7 @@ You shall read and analyze images to output JSON.
 
 A product object in a products array each having
 
-name, price, discounted_price (price after promotion), quantity, quantity_unit, brief_explanation (explanation of who should buy this), pros, cons
+name, price (price before promotion / sale / discount), discounted_price (price after promotion / sale / discount), quantity, quantity_unit, brief_explanation (explanation of who should buy this), pros, cons
 
 The pros and cons you can analyze and think for yourself
 
@@ -54,10 +54,13 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 	}));
 
+	const custom1 = params.params.custom1;
+	const custom2 = params.params.custom2;
+
 	const openai = new OpenAI({ apiKey: OPENAI_KEY });
 
 	const response = await openai.chat.completions.create({
-		model: 'gpt-4o-mini',
+		model: 'gpt-4o',
 		messages: [
 			{
 				role: 'system',
@@ -68,7 +71,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				content: [
 					{
 						type: 'text',
-						text: 'These are are the images of the first product.'
+						text: `These are are the images of the first product.${custom1 ?? 'The description that apply to only this product is ' + custom1}`
 					},
 					...firstImages
 				]
@@ -78,7 +81,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				content: [
 					{
 						type: 'text',
-						text: 'These are are the images of the second product.'
+						text: `These are are the images of the first product.${custom2 ?? 'The description that apply to only this product is ' + custom2}`
 					},
 					...secondImages
 				]
