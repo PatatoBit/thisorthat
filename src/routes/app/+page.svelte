@@ -66,11 +66,7 @@
 
 		{#if loading}
 			<div class="loading">
-				<img
-					transition:fly
-					src="https://media1.tenor.com/m/FawYo00tBekAAAAC/loading-thinking.gif"
-					alt="Loading"
-				/>
+				<img transition:fly src="/loading.gif" alt="Loading" />
 			</div>
 		{/if}
 
