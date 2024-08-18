@@ -37,9 +37,14 @@ If you cannot identify a field, you shall return null.
 `;
 
 export const POST: RequestHandler = async ({ request }) => {
+	const params = await request.json();
+
+	const firstImages: string[] = params.params.images1;
+	const secondImages: string[] = params.params.images2;
+
+	console.log(firstImages.length, secondImages.length);
+
 	const openai = new OpenAI({ apiKey: OPENAI_KEY });
-	const images = await request.json();
-	const imagesUrl: string[] = images.params.images;
 
 	const response = await openai.chat.completions.create({
 		model: 'gpt-4o-mini',
@@ -50,7 +55,16 @@ export const POST: RequestHandler = async ({ request }) => {
 			},
 			{
 				role: 'user',
-				content: imagesUrl.map((base64) => ({
+				content: [
+					{
+						type: 'text',
+						text: "These are the first product's image"
+					}
+				]
+			},
+			{
+				role: 'user',
+				content: secondImages.map((base64) => ({
 					type: 'image_url',
 					image_url: {
 						url: base64

@@ -12,12 +12,27 @@
 
 	let responseData: CompareData | undefined;
 
+	let loading: boolean = false;
+
 	async function handleSubmit() {
+		loading = true;
+		const converted1 = [];
+		const converted2 = [];
+
 		if (images1 && images2) {
-			const firstBase64 = await toBase64(images1[0]);
-			const secondBase64 = await toBase64(images2[0]);
+			for (const image of images1) {
+				const base64 = await toBase64(image);
+				converted1.push(base64);
+			}
+
+			for (const image of images2) {
+				const base64 = await toBase64(image);
+				converted2.push(base64);
+			}
+
 			const payload = {
-				images: [firstBase64, secondBase64]
+				images1: converted1,
+				images2: converted2
 			};
 
 			await axios.post('/api/compare', { params: payload }).then((response) => {
@@ -27,8 +42,12 @@
 					console.log(response.data.message.content);
 				}
 			});
+
+			loading = false;
 		} else {
 			alert('Missing images');
+
+			loading = false;
 		}
 	}
 </script>
@@ -41,7 +60,7 @@
 			<div class="side">
 				<div class="upload">
 					<input
-						id="file-upload"
+						id="file-upload-1"
 						type="file"
 						accept="image/png, image/jpeg"
 						multiple
@@ -59,7 +78,7 @@
 			<div class="side">
 				<div class="upload">
 					<input
-						id="file-upload"
+						id="file-upload-2"
 						type="file"
 						accept="image/png, image/jpeg"
 						multiple
@@ -75,10 +94,16 @@
 		</div>
 	</form>
 
-	{#if responseData?.recommend_meter}
+	{#if responseData}
 		<br />
 		<div class="meter">
 			<Meter value={responseData.recommend_meter} />
+		</div>
+	{/if}
+
+	{#if loading}
+		<div class="loading">
+			<h2>Thinking...</h2>
 		</div>
 	{/if}
 
@@ -106,6 +131,12 @@
 
 	.meter {
 		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.upload {
 		display: flex;
 		flex-direction: column;
 		align-items: center;

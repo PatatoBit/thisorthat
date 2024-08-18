@@ -41,24 +41,24 @@
 
 	<div class="data">
 		<h4>Pros</h4>
-		<ul>
+		<div class="tags">
 			{#each data.pros as pro}
-				<li class="radio pro">
+				<div class="radio pro">
 					{pro}
-				</li>
+				</div>
 			{/each}
-		</ul>
+		</div>
 	</div>
 
 	<div class="data">
 		<h4>Cons</h4>
-		<ul>
+		<div class="tags">
 			{#each data.cons as con}
-				<li class="radio con">
+				<div class="radio con">
 					{con}
-				</li>
+				</div>
 			{/each}
-		</ul>
+		</div>
 	</div>
 </div>
 
@@ -77,7 +77,10 @@
 	}
 
 	.discount {
-		color: green;
+		background-color: green;
+		color: #fefefe;
+		padding: 0.2rem;
+		border-radius: 0.2rem;
 	}
 
 	.data {
@@ -85,19 +88,25 @@
 		flex-direction: column;
 	}
 
+	.tags {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		column-gap: 1rem;
+		gap: 0.5rem;
+	}
+
 	.radio {
 		padding: 0.5rem 1rem;
-		margin-block: 0.5rem;
 		border-radius: 3rem;
+		color: #fefefe;
 	}
 
 	.pro {
 		background: #59cf63;
-		color: #fefefe;
 	}
 
 	.con {
 		background: #ea5252;
-		color: #fefefe;
 	}
 </style>

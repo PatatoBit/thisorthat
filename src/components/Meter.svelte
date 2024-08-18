@@ -2,8 +2,9 @@
 	export let value = 50; // Value between 0 and 100
 
 	const radius = 50; // Radius of the semi-circle
-	const degree = -90 + (value / 100) * 180; // Degree of the arrow
-	const circumference = 2 * Math.PI * radius;
+
+	const percent = value / 100;
+	const degree = -90 + percent * 180; // Degree of the arrow
 </script>
 
 <img src="/uparrow.svg" alt="Arrow" class="arrow" style="rotate: {degree}deg" />
