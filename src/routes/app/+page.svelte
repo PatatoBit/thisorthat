@@ -6,6 +6,7 @@
 	import type { ProductData } from '$lib/types';
 	import axios from 'axios';
 	import Meter from '../../components/Meter.svelte';
+	import { fly } from 'svelte/transition';
 
 	let images1: FileList;
 	let images2: FileList;
@@ -52,9 +53,11 @@
 	}
 </script>
 
-<div class="page">
-	<form class="container" on:submit|preventDefault={handleSubmit}>
-		<button class="compare" type="submit">Compare</button>
+<div class="container">
+	<form on:submit|preventDefault={handleSubmit}>
+		<div class="compare">
+			<button type="submit">Compare</button>
+		</div>
 
 		<div class="sides">
 			<div class="side">
@@ -92,18 +95,22 @@
 				{/if}
 			</div>
 		</div>
+
+		{#if loading}
+			<div class="loading">
+				<img
+					transition:fly
+					src="https://media1.tenor.com/m/FawYo00tBekAAAAC/loading-thinking.gif"
+					alt="Loading"
+				/>
+			</div>
+		{/if}
 	</form>
 
 	{#if responseData}
 		<br />
 		<div class="meter">
 			<Meter value={responseData.recommend_meter} />
-		</div>
-	{/if}
-
-	{#if loading}
-		<div class="loading">
-			<h2>Thinking...</h2>
 		</div>
 	{/if}
 
@@ -118,10 +125,26 @@
 	.container {
 		margin-top: 5rem;
 		flex-direction: column;
+		justify-content: center;
 	}
 
 	.compare {
-		margin: 0 auto;
+		margin-block: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.loading {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			max-width: 20rem;
+			border-radius: 2rem;
+		}
 	}
 
 	.sides {
@@ -130,7 +153,7 @@
 	}
 
 	.meter {
-		margin: 0 auto;
+		margin-block: 0 auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

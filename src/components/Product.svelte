@@ -77,7 +77,7 @@
 	}
 
 	.discount {
-		background-color: green;
+		background-color: rgb(18, 192, 102);
 		color: #fefefe;
 		padding: 0.2rem;
 		border-radius: 0.2rem;
@@ -103,7 +103,7 @@
 	}
 
 	.pro {
-		background: #59cf63;
+		background: rgb(18, 192, 102);
 	}
 
 	.con {

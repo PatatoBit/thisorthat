@@ -1,6 +1,7 @@
 import { OPENAI_KEY } from '$env/static/private';
 import { json, type RequestHandler } from '@sveltejs/kit';
 import OpenAI from 'openai';
+import type { ChatCompletionContentPart } from 'openai/resources/index.mjs';
 
 const systemMessage = `
 You are a value comparer app.
@@ -33,16 +34,25 @@ The structure of this JSON object is
 }
 	
 If you cannot identity an object, you shall return an empty object with the name being "No object found".
-If you cannot identify a field, you shall return null.
+If you cannot identify a field, you shall return "N/A".
 `;
 
 export const POST: RequestHandler = async ({ request }) => {
 	const params = await request.json();
 
-	const firstImages: string[] = params.params.images1;
-	const secondImages: string[] = params.params.images2;
+	const firstImages: ChatCompletionContentPart[] = params.params.images1.map((base64: string) => ({
+		type: 'image_url',
+		image_url: {
+			url: base64
+		}
+	}));
 
-	console.log(firstImages.length, secondImages.length);
+	const secondImages: ChatCompletionContentPart[] = params.params.images2.map((base64: string) => ({
+		type: 'image_url',
+		image_url: {
+			url: base64
+		}
+	}));
 
 	const openai = new OpenAI({ apiKey: OPENAI_KEY });
 
@@ -58,21 +68,25 @@ export const POST: RequestHandler = async ({ request }) => {
 				content: [
 					{
 						type: 'text',
-						text: "These are the first product's image"
-					}
+						text: 'These are are the images of the first product.'
+					},
+					...firstImages
 				]
 			},
 			{
 				role: 'user',
-				content: secondImages.map((base64) => ({
-					type: 'image_url',
-					image_url: {
-						url: base64
-					}
-				}))
+				content: [
+					{
+						type: 'text',
+						text: 'These are are the images of the second product.'
+					},
+					...secondImages
+				]
 			}
 		]
 	});
+
+	console.table(response.choices[0]);
 
 	return json(response.choices[0]);
 };
