@@ -34,7 +34,7 @@ The structure of this JSON object is
 }
 	
 If you cannot identity an object, you shall return an empty object with the name being "No object found".
-If you cannot identify a field, you shall return "N/A".
+If you cannot identify a field, don't return that field.
 `;
 
 export const POST: RequestHandler = async ({ request }) => {
