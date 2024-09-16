@@ -15,7 +15,7 @@
 	let custom2: string = '';
 	let previews2: string[] = [];
 
-	let responseData: CompareData | null = dummyData;
+	let responseData: CompareData | null;
 
 	let loading: boolean = false;
 
