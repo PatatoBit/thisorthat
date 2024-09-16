@@ -17,12 +17,11 @@ body {
 textarea {
 	padding: 0.5rem;
 	font-family: 'Radio Canada Big', sans-serif;
-	font-optical-sizing: auto;
+	font-size: 1rem;
 
-	border-radius: 0.2rem;
+	border-radius: 0.5rem;
 
-	border: none;
-	background-color: rgb(228, 228, 228);
+	border: 2px solid rgb(228, 228, 228);
 }
 
 .fancy {
@@ -48,9 +47,12 @@ textarea {
 }
 
 button {
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 1.5rem;
 	border: none;
-	border-radius: 0.2rem;
+	border-radius: 7rem;
 
 	cursor: pointer;
+	background-color: #212121;
+	color: #fefefe;
+	font-size: 1rem;
 }
