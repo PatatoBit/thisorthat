@@ -3,7 +3,6 @@
 		{
 			"name": "Spring Onions",
 			"price": 17.99,
-			"discounted_price": 14.99,
 			"quantity": 10,
 			"quantity_unit": "units",
 			"brief_explanation": "This product offers a significant discount, making it a good value for those needing a larger quantity of spring onions.",
@@ -15,7 +14,6 @@
 		},
 		{
 			"name": "Spring Onions",
-			"price": 7.99,
 			"discounted_price": 5.99,
 			"quantity": 6,
 			"quantity_unit": "units",

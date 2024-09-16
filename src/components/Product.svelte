@@ -15,12 +15,21 @@
 			<h4>Price</h4>
 
 			<p>
-				<strike>{data.price}</strike>
-				{data.discounted_price}
+				{#if data.price && data.discounted_price}
+					<strike>{data.price}</strike>
+				{:else if data.price}
+					{data.price}
+				{/if}
 
-				<span class="discount">
-					-{Math.round(((data.price - data.discounted_price) / data.price) * 100)}%
-				</span>
+				{#if data.discounted_price}
+					{data.discounted_price}
+				{/if}
+
+				{#if data.price && data.discounted_price}
+					<span class="discount">
+						-{Math.round(((data.price - data.discounted_price) / data.price) * 100)}%
+					</span>
+				{/if}
 			</p>
 		</div>
 
@@ -32,7 +41,10 @@
 
 	<div class="data">
 		<h4>Price / Quantity</h4>
-		<p>{data.price / data.quantity}</p>
+
+		{#if data.price}
+			<p>{data.price / data.quantity}</p>
+		{/if}
 	</div>
 
 	<div class="data">

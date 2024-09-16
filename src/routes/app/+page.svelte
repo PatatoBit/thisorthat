@@ -5,6 +5,7 @@
 	import axios from 'axios';
 	import Meter from '../../components/Meter.svelte';
 	import { fly } from 'svelte/transition';
+	import dummyData from '../../lib/dummy.json';
 
 	let images1: FileList;
 	let custom1: string = '';
@@ -14,7 +15,7 @@
 	let custom2: string = '';
 	let previews2: string[] = [];
 
-	let responseData: CompareData | null;
+	let responseData: CompareData | null = dummyData;
 
 	let loading: boolean = false;
 

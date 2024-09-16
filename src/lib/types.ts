@@ -1,7 +1,7 @@
 export interface ProductData {
 	name: string;
-	price: number;
-	discounted_price: number;
+	price: number | undefined;
+	discounted_price: number | undefined;
 	quantity: number;
 	quantity_unit: string;
 	brief_explanation: string;
