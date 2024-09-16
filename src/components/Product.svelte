@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { ProductData } from '$lib/types';
+	import { fly } from 'svelte/transition';
 	export let data: ProductData;
 </script>
 
-<div class="container">
+<div class="container" transition:fly>
 	<div class="data">
 		<h4>Name</h4>
 		<p>{data.name}</p>
