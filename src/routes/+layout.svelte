@@ -7,3 +7,7 @@
 </script>
 
 <slot />
+
+<style>
+	@import '../styles/variables.scss';
+</style>

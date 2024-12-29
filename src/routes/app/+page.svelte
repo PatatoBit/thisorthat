@@ -223,7 +223,6 @@
 	}
 
 	.sides {
-		display: flex;
 		flex-direction: row;
 	}
 
