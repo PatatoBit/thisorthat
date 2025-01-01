@@ -166,6 +166,14 @@
 			<h2>{responseData.products[1].price}</h2>
 		{/if}
 	</div>
+
+	{#if loading}
+		<div>Loading...</div>
+	{/if}
+
+	{#if !loading && !responseData}
+		<div>No data</div>
+	{/if}
 </main>
 
 <div class="bar">
