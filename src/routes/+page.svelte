@@ -1,5 +1,9 @@
-<div class="center">
-	<h1>This or <span class="fancy">That</span></h1>
+<div class="container">
+	<img class="logo" src="/auto.jpg" alt="Car" />
+
+	<br />
+
+	<h1>This or <span class="label">That</span></h1>
 
 	<br />
 
@@ -9,13 +13,23 @@
 </div>
 
 <style lang="scss">
-	.center {
+	.logo {
+		width: 100%;
+		max-width: 20rem;
+
+		border-radius: 1.2rem;
+		box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.2);
+	}
+
+	.container {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 
-		min-height: 100vh;
+		min-height: 80vh;
 		width: 100%;
 		max-width: 60rem;
 		margin-inline: auto;

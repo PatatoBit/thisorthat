@@ -1,4 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+@font-face {
+	font-family: 'Open Runde';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local(''),
+		/* IE6-IE8 */ url('/fonts/OpenRunde/OpenRunde-Regular.woff2') format('woff2'),
+		/* Super Modern Browsers */ url('/fonts/OpenRunde/OpenRunde-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Open Runde';
+	font-style: bold;
+	font-weight: 700;
+	src:
+		local(''),
+		/* IE6-IE8 */ url('/fonts/OpenRunde/OpenRunde-Bold.woff2') format('woff2'),
+		/* Super Modern Browsers */ url('/fonts/OpenRunde/OpenRunde-Bold.woff') format('woff');
+}
+
+.label {
+	font-family: 'DM Mono', serif;
+	font-weight: 400;
+	font-style: normal;
+	color: var(--text);
+}
 
 *,
 *::before,
@@ -6,12 +33,14 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: 'Open Runde', sans-serif;
 }
 
 html,
 body {
-	font-family: 'Radio Canada Big', sans-serif;
+	font-family: 'Open Runde', sans-serif;
 	font-optical-sizing: auto;
+	background-color: var(--background);
 }
 
 textarea {
@@ -22,6 +51,11 @@ textarea {
 	border-radius: 0.5eem;
 
 	border: 2px solid rgb(228, 228, 228);
+}
+
+a {
+	display: inline;
+	color: var(--primary);
 }
 
 .fancy {
@@ -35,6 +69,8 @@ textarea {
 	margin-inline: auto;
 	max-width: 60rem;
 	width: 100%;
+	padding-top: 2rem;
+	padding: 1rem;
 
 	.side {
 		display: flex;
@@ -55,4 +91,10 @@ button {
 	background-color: #212121;
 	color: #fefefe;
 	font-size: 1rem;
+}
+
+h1 {
+	font-size: 2rem;
+	font-style: bold;
+	font-weight: 700;
 }
