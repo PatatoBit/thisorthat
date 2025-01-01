@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { people } from '$lib/people';
+</script>
+
 <main class="container">
 	<h1>About</h1>
 	<p>
@@ -17,30 +21,14 @@
 	<br />
 
 	<div class="team">
-		<div class="person">
-			<img src="https://placehold.co/500" alt="Placeholder" />
-			<strong>Pat</strong>
-		</div>
-
-		<div class="person">
-			<img src="https://placehold.co/500" alt="Placeholder" />
-			<strong>Thun</strong>
-		</div>
-
-		<div class="person">
-			<img src="https://placehold.co/500" alt="Placeholder" />
-			<strong>Buga</strong>
-		</div>
-
-		<div class="person">
-			<img src="https://placehold.co/500" alt="Placeholder" />
-			<strong>Aimy</strong>
-		</div>
-
-		<div class="person">
-			<img src="https://placehold.co/500" alt="Placeholder" />
-			<strong>Proud</strong>
-		</div>
+		{#each people as person, index}
+			<div class="person">
+				<a href="/about/person{index}">
+					<img src={person.image} alt={person.fullName} />
+				</a>
+				<strong>{person.name}</strong>
+			</div>
+		{/each}
 	</div>
 
 	<br />
