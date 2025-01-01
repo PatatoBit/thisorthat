@@ -265,7 +265,8 @@
 		margin-inline: auto;
 		padding: 1rem;
 
-		border-top: 1px solid var(--primary);
+		border-radius: 2rem;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	}
 
 	.button-group {
@@ -277,7 +278,7 @@
 	}
 
 	label {
-		border: 1px solid var(--primary);
+		border: 1px solid var(--black);
 		border-radius: 1rem;
 		display: grid;
 		justify-content: center;
