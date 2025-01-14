@@ -46,6 +46,7 @@
 			await axios.post('/api/compare', { params: payload }).then((response) => {
 				try {
 					responseData = JSON.parse(response.data.message.content);
+					console.log(responseData);
 					loading = false;
 				} catch (error) {
 					console.log(response.data.message.content);
@@ -157,6 +158,10 @@
 			<h2>{responseData.products[0].price}</h2>
 			<h2>{responseData.products[1].price}</h2>
 
+			<p class="label">DISCOUNTED PRICE</p>
+			<h2>{responseData.products[0].discounted_price}</h2>
+			<h2>{responseData.products[1].discounted_price}</h2>
+
 			<p class="label">QUANTITY</p>
 			<h2>{responseData.products[0].quantity}</h2>
 			<h2>{responseData.products[1].quantity}</h2>
@@ -164,6 +169,14 @@
 			<p class="label">VALUE</p>
 			<h2>{responseData.products[0].price}</h2>
 			<h2>{responseData.products[1].price}</h2>
+
+			<p class="label">CONFIDENCE</p>
+			<h2 style="font-size: {3 * ((100 - responseData.recommend_meter) / 100)}rem;">
+				{100 - responseData.recommend_meter}%
+			</h2>
+			<h2 style="font-size: {3 * (responseData.recommend_meter / 100)}rem;">
+				{responseData.recommend_meter}%
+			</h2>
 		{/if}
 	</div>
 
