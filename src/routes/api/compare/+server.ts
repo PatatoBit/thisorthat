@@ -89,7 +89,6 @@ export const POST: RequestHandler = async ({ request }) => {
 		]
 	});
 
-	console.log(response.choices[0]);
-
-	return json(response.choices[0]);
+	console.log(await response.choices[0]);
+	return json(await response.choices[0]);
 };
