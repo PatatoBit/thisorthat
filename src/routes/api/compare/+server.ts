@@ -59,35 +59,38 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	const openai = new OpenAI({ apiKey: OPENAI_KEY });
 
-	const response = await openai.chat.completions.create({
-		model: 'gpt-4o',
-		messages: [
-			{
-				role: 'system',
-				content: systemMessage
-			},
-			{
-				role: 'user',
-				content: [
-					{
-						type: 'text',
-						text: `These are are the images of the first product.${custom1 ?? 'The description that apply to only this product is ' + custom1}`
-					},
-					...firstImages
-				]
-			},
-			{
-				role: 'user',
-				content: [
-					{
-						type: 'text',
-						text: `These are are the images of the first product.${custom2 ?? 'The description that apply to only this product is ' + custom2}`
-					},
-					...secondImages
-				]
-			}
-		]
-	});
+	const response = await openai.chat.completions.create(
+		{
+			model: 'gpt-4o',
+			messages: [
+				{
+					role: 'system',
+					content: systemMessage
+				},
+				{
+					role: 'user',
+					content: [
+						{
+							type: 'text',
+							text: `These are are the images of the first product.${custom1 ?? 'The description that apply to only this product is ' + custom1}`
+						},
+						...firstImages
+					]
+				},
+				{
+					role: 'user',
+					content: [
+						{
+							type: 'text',
+							text: `These are are the images of the first product.${custom2 ?? 'The description that apply to only this product is ' + custom2}`
+						},
+						...secondImages
+					]
+				}
+			]
+		},
+		{ timeout: 60000 }
+	);
 
 	console.log(await response.choices[0]);
 	return json(await response.choices[0]);
