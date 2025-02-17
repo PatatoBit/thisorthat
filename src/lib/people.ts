@@ -10,10 +10,10 @@ export interface Person {
 export const people: Person[] = [
 	{
 		name: 'Pat',
-		fullName: 'Chayapat Pakham',
+		fullName: 'ชยพัทธ์​ ผาคำ',
 		birth: '30-03-2008',
 		number: '21',
-		image: 'https://placehold.co/500',
+		image: '/people/Pat.jpeg',
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, varius velit'
 	},

@@ -49,6 +49,7 @@
 					console.log(responseData);
 					loading = false;
 				} catch (error) {
+					console.error('');
 					console.log(response.data.message.content);
 					loading = false;
 				}

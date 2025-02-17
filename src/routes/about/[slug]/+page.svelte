@@ -30,7 +30,7 @@
 			<h1>{person.name}</h1>
 			<p>{person.fullName}</p>
 			<p>No. {person.number}</p>
-			<p>Born on {person.birth}</p>
+			<p>🎂 {person.birth}</p>
 
 			<br />
 
@@ -62,6 +62,8 @@
 	img {
 		width: 100%;
 		max-width: 20rem;
+		height: 20rem; /* Make the image a square */
+		object-fit: cover; /* Ensure the image covers the square area */
 
 		border-radius: 1.2rem;
 		box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.2);
