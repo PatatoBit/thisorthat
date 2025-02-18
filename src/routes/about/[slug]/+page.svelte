@@ -30,7 +30,7 @@
 			<h1>{person.name}</h1>
 			<p>{person.fullName}</p>
 			<p>No. {person.number}</p>
-			<p>🎂 {person.birth}</p>
+			<!-- <p>🎂 {person.birth}</p> -->
 
 			<br />
 

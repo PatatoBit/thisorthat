@@ -9,13 +9,20 @@ export interface Person {
 
 export const people: Person[] = [
 	{
+		name: 'Peak',
+		fullName: 'พิชญ์ธนัช คำวิลัย',
+		birth: '01-01-2015',
+		number: 34,
+		image: '/people/Peak.jpg',
+		description: 'โปสเตอร์'
+	},
+	{
 		name: 'Amy',
 		fullName: 'สุกฤตา เพ็ชรวรุณ',
 		birth: '01-01-2015',
 		number: 17,
 		image: '/people/Amy.jpg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, varius velit'
+		description: 'สไลด์'
 	},
 	{
 		name: 'Proud',
@@ -23,8 +30,7 @@ export const people: Person[] = [
 		birth: '01-01-2015',
 		number: 18,
 		image: '/people/Proud.jpg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, varius velit'
+		description: 'สไลด์'
 	},
 	{
 		name: 'Pat',
@@ -32,8 +38,7 @@ export const people: Person[] = [
 		birth: '30-03-2008',
 		number: 21,
 		image: '/people/Pat.jpeg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, varius velit'
+		description: 'เว็ปไซต์'
 	},
 	{
 		name: 'Thun',
@@ -41,8 +46,7 @@ export const people: Person[] = [
 		birth: '12-12-2012',
 		number: 32,
 		image: '/people/Thun.jpg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, varius velit'
+		description: 'รายงาน'
 	},
 	{
 		name: 'Buga',
@@ -50,7 +54,6 @@ export const people: Person[] = [
 		birth: '01-01-2015',
 		number: 34,
 		image: '/people/Buga.jpg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, varius velit'
+		description: 'สไลด์'
 	}
 ];
