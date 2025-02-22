@@ -1,9 +1,7 @@
 <nav>
-	<h3>This or That</h3>
+	<h3>Pricey</h3>
 
 	<ul>
-		<li><a href="/" class="label">HOME</a></li>
-		<li><a href="/about" class="label">ABOUT</a></li>
 		<li><a href="/contacts" class="label">CONTACTS</a></li>
 	</ul>
 </nav>
